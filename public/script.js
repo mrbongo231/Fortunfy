@@ -1,6 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-       
-
     const fortuneBtn = document.getElementById("fortuneButton");
     const fortuneDiv = document.getElementById("fortune");
 
@@ -10,13 +8,12 @@ document.addEventListener("DOMContentLoaded", function () {
         fortuneBtn.textContent = "Generating fortune...";
 
         try {
-            const res = await fetch("/api/fortune");
+            const res = await fetch("/.netlify/functions/fortune");
             const data = await res.json();
             fortuneDiv.textContent = data.fortune;
         }
         catch (err) {
-            fortuneDiv.textContent = "The fortune maker has failed all of his clases and has to retake and pass them to start working on the project again.";
+            fortuneDiv.textContent = "The fortune maker has failed all of his classes and has to retake and pass them to start working on the project again.";
         }
     });
-
 });
