@@ -1,0 +1,50 @@
+h1 {
+    color: #2cc1e7;
+    text-align: center;
+    font: 36px Arial, sans-serif;
+    font-weight: bold;
+}
+p {
+    color: #555555;
+    text-align: center;
+    font: 18px Arial, sans-serif;
+}
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    font-size: 16px;
+    margin: 20px auto;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+}
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 25%;
+    height: 25%;
+}
+#fortune {
+     
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #e8f4f8;
+            border: 2px solid #4a90e2;
+            border-radius: 8px;
+            font-size: 18px;
+            color: #333;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-weight: 500;
+            width: 800px;
+    
+    
+}
