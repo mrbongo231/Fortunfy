@@ -1,4 +1,18 @@
 export async function handler(event, context) {
+  const key = process.env.OPENAI_API_KEY;
+
+  console.log("Function invoked");
+  console.log("OPENAI_API_KEY present:", !!key);
+
+  if (!key) {
+    return {
+      statusCode: 500,
+      body: JSON.stringify({
+        fortune: "Missing OpenAI key. The cookie is silent today."
+      })
+    };
+  }
+
   try {
     const prompt = "Generate one short, playful fortune in one sentence. Make it light-hearted and fun.";
 
@@ -6,10 +20,10 @@ export async function handler(event, context) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`
+        "Authorization": `Bearer ${key}`
       },
       body: JSON.stringify({
-        model: "GPT-5 nano",
+        model: "gpt-4o-mini",
         messages: [
           { role: "system", content: "You generate short, fun fortunes." },
           { role: "user", content: prompt }
@@ -19,10 +33,17 @@ export async function handler(event, context) {
       })
     });
 
-    const data = await response.json();
-    const fortune =
-      data.choices?.[0]?.message?.content?.trim() ||
-      "The cookie is silent today.";
+    console.log("OpenAI status:", response.status);
+
+    const raw = await response.text();
+    console.log("OpenAI raw response:", raw);
+
+    if (!response.ok) {
+      throw new Error(`OpenAI error: ${response.status}`);
+    }
+
+    const data = JSON.parse(raw);
+    const fortune = data.choices?.[0]?.message?.content?.trim() || "The cookie is silent today.";
 
     return {
       statusCode: 200,
@@ -34,6 +55,7 @@ export async function handler(event, context) {
     };
 
   } catch (error) {
+    console.error("Error:", error);
     return {
       statusCode: 500,
       body: JSON.stringify({
