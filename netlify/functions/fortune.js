@@ -9,7 +9,7 @@ export async function handler(event, context) {
         "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`
       },
       body: JSON.stringify({
-        model: "gpt-4o-mini",
+        model: "GPT-5 nano",
         messages: [
           { role: "system", content: "You generate short, fun fortunes." },
           { role: "user", content: prompt }
