@@ -13,7 +13,10 @@ document.addEventListener("DOMContentLoaded", function () {
             fortuneDiv.textContent = data.fortune;
         }
         catch (err) {
-            fortuneDiv.textContent = "The fortune maker has failed all of his classes and has to retake and pass them to start working on the project again.";
+            fortuneDiv.textContent = "The fortune maker has failed all of his classes and must retake them.";
+        }
+        finally {
+            fortuneBtn.textContent = "Get Your Fortune";
         }
     });
 });
